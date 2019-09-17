@@ -8,8 +8,8 @@ architecture tb_arch of enhanced_prio_tb is
    signal fst, snd: std_logic_vector(3 downto 0) ;
 begin
    -- instantiate the circuit under test
-   uut : entity work.enhanced_prio(rtl_arch) 
-   -- uut : entity work.bcd_inc(structure) 
+   --uut : entity work.enhanced_prio(rtl_arch) 
+   uut : entity work.enhanced_prio(struc_arch) 
       port map(
          r => r, fst => fst, snd => snd
       );

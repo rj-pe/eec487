@@ -3,15 +3,14 @@ use ieee.std_logic_1164.all;
 
 entity prio_encoder is
   port(
-    r : in std_logic_vector(10 downto 1);
-    pcode : out std_logic_vector(4 downto 0)
+    r : in std_logic_vector(9 downto 0);
+    pcode : out std_logic_vector(3 downto 0)
   );
 end prio_encoder;
 
 architecture cond_arch of prio_encoder is
 begin
-  pcode <= "1010" when (r(10) = '1') else
-           "1001" when (r(9) = '1') else
+  pcode <= "1001" when (r(9) = '1') else
            "1000" when (r(8) = '1') else
            "0111" when (r(7) = '1') else
            "0110" when (r(6) = '1') else
@@ -20,5 +19,6 @@ begin
            "0011" when (r(3) = '1') else
            "0010" when (r(2) = '1') else
            "0001" when (r(1) = '1') else
+           "0000" when (r(0) = '1') else
            "1111";
 end cond_arch;
