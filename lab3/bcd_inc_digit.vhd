@@ -12,9 +12,19 @@ end bcd_inc_digit;
 
 architecture sop of bcd_inc_digit is
 begin
-  z(0)   <= ((not cin) and (not a(0))) or (cin and a(0));
-  z(1)   <= (((not cin) and ((not a(3)) and (not a(1)) and a(0))) + (cin and (not a(3)) and (not a(1))));
-  z(2)   <= ((not cin) and ((a(2) and (not a(1))) + (a(2) and (not a(0))) + ((not a(2) and a(1) and a(0))))) + (cin and ((a(2) and (not a(1))) + ((not a(2)) and a(1))));
-  z(3)   <= ((not cin) and ((a(3) and (not a(0))) + (a(2) and a(1) and a(0)))) + (cin and a(2) and a(1));
-  cout <= ((not cin) and a(3) and a(0)) + ( cin and a(3));
+  with cin select
+    z(0)   <= not a(0) when '1',
+              a(0) when others;
+  with cin select              
+    z(1)   <= ((not a(3) and not a(1) and a(0)) or (not a(3) and a(1) and not a(0))) when '1',
+              a(1) when others;
+  with cin select            
+    z(2)   <= ((a(2) and not a(1)) or (a(2) and not a(0)) or (not a(2) and a(1) and a(0))) when '1',
+              a(2) when others;
+  with cin select            
+    z(3)   <= ((a(3) and not a(1) and not a(0)) or (a(2) and a(1) and a(0))) when '1',
+              a(3) when others;
+  with cin select            
+    cout <= (a(3) and a(0)) when '1',
+              '0' when others;
 end sop;
