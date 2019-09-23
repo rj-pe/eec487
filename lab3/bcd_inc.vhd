@@ -4,16 +4,14 @@ use ieee.std_logic_1164.all;
 entity bcd_inc is
   port(
     b2, b1, b0 : in std_logic_vector(3 downto 0);
-    y2, y1, y0 : out std_logic_vector(3 downto 0);
-    --overflow : out std_logic
+    y2, y1, y0 : out std_logic_vector(3 downto 0)
   );
 end bcd_inc;
 
 architecture rtl_arch of bcd_inc is
-  --signal c0, c1, c2 std_logic;
-  signal c0, c1, c2, overflow std_logic;
+  signal c0, c1, c2, overflow : std_logic;
 begin
-  bid0_unit : entity work.bcd_inc_digit(sop)
+  bid0_unit : entity work.bcd_inc_digit_one(sop)
     port map(a => b0, z => y0, cin => '0', cout => c0);
   bid1_unit : entity work.bcd_inc_digit(sop)
     port map(a => b1, z => y1, cin => c0, cout => c1);
