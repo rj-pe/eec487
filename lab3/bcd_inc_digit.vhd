@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity bcd_inc_digit is
   port(
@@ -28,3 +29,14 @@ begin
     cout <= (a(3) and a(0)) when '1',
               '0' when others;
 end sop;
+
+architecture rtl_arch of bcd_inc_digit is
+begin
+  with cin select 
+    z <= std_logic_vector(unsigned(a) + 1) when '1',
+	       a when others;
+  with cin select
+    cout <= (a(3) and a(0)) when '1',
+             '0' when others;
+
+end rtl_arch;
