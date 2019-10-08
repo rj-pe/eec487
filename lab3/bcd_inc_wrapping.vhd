@@ -18,7 +18,7 @@ bcd0 : entity work.bcd_inc(rtl_arch)
   port map(
     b0 => sw(3 downto 0),       -- first incrementor input (switch)
     b1 => sw(7 downto 4),       -- second incrementor input (switch)
-    b2 => "1001",		            -- third incrementor input (no switch)
+    b2 => "1001",               -- third incrementor input (no switch)
     y0 => y0_out,
     y1 => y1_out,
     y2 => open
@@ -27,7 +27,7 @@ hex2sseg0 : entity work.hex_to_sseg(arch)
   port map(
     hex => y0_out,
     dp => '1',
-    sseg => hex0	              -- first incrementor output (LED)
+    sseg => hex0                -- first incrementor output (LED)
   );	
 hex2sseg1 : entity work.hex_to_sseg(arch)
   port map(
@@ -39,7 +39,7 @@ hex2sseg2 : entity work.hex_to_sseg(arch)
   port map(
     hex => y2_out,
     dp => '1',
-    sseg => hex2	              -- third incrementor output (unconnected)
+    sseg => hex2               -- third incrementor output (unconnected)
   );
   led(3 downto 0) <= y0_out;
   led(7 downto 4) <= y1_out;
