@@ -12,7 +12,6 @@ entity discrete_7_led_test is
     hex5 : out std_logic_vector(7 downto 0) -- 7 led pins
   );
 end discrete_7_led_test;
-
 architecture struc_arch of discrete_7_led_test is
   signal q_out, r_out : std_logic_vector(4 downto 0); --declaring signals to set for q and r
 begin
@@ -23,28 +22,24 @@ div : entity work.division(process_arch)
     q => q_out,           -- applies output to hex input
     r => r_out            -- applies remainder to hex input
   );
-  
 hex4u : entity work.hex_to_sseg(arch)
   port map (
     hex => q_out(3 downto 0),  -- sets quotient to a hex
     dp => '1',
     sseg => hex4              -- for display
   ); 
-  
 hex5u : entity work.hex_to_sseg(arch)
   port map (
     hex => "000" & q_out(4),  -- sets quotient to a hex
     dp => '1',
     sseg => hex5              -- for display
   );
-  
 hex0u : entity work.hex_to_sseg(arch)
   port map (
     hex => r_out(3 downto 0),    -- sets quotient to a hex
     dp => '1',
     sseg => hex0                 -- for display
   );
-  
 hex1u : entity work.hex_to_sseg(arch)
   port map (
     hex => "000" & r_out(4),     -- sets quotient to a hex
