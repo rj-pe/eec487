@@ -4,17 +4,17 @@ use ieee.std_logic_1164.all;
 
 entity discrete_7_led_test is 
   port (
-  sw : in std_logic_vector(9 downto 0); -- 10 switches
-  led : out std_logic_vector(9 downto 0); -- 10 led lights
-  hex0 : out std_logic_vector(7 downto 0); -- 7 led pins
-  hex1 : out std_logic_vector(7 downto 0); -- 7 led pins
-  hex4 : out std_logic_vector(7 downto 0); -- 7 led pins
-  hex5 : out std_logic_vector(7 downto 0) -- 7 led pins
+    sw : in std_logic_vector(9 downto 0); -- 10 switches
+    led : out std_logic_vector(9 downto 0); -- 10 led lights
+    hex0 : out std_logic_vector(7 downto 0); -- 7 led pins
+    hex1 : out std_logic_vector(7 downto 0); -- 7 led pins
+    hex4 : out std_logic_vector(7 downto 0); -- 7 led pins
+    hex5 : out std_logic_vector(7 downto 0) -- 7 led pins
   );
-  end discrete_7_led_test;
+end discrete_7_led_test;
 
 architecture struc_arch of discrete_7_led_test is
-signal q_out, r_out : std_logic_vector(4 downto 0); --declaring signals to set for q and r
+  signal q_out, r_out : std_logic_vector(4 downto 0); --declaring signals to set for q and r
 begin
 div : entity work.division(process_arch)
   port map (
@@ -29,8 +29,7 @@ hex4u : entity work.hex_to_sseg(arch)
     hex => q_out(3 downto 0),  -- sets quotient to a hex
     dp => '1',
     sseg => hex4              -- for display
-  );
-  
+  ); 
   
 hex5u : entity work.hex_to_sseg(arch)
   port map (
@@ -47,17 +46,12 @@ hex0u : entity work.hex_to_sseg(arch)
   );
   
 hex1u : entity work.hex_to_sseg(arch)
-
   port map (
-    
     hex => "000" & r_out(4),     -- sets quotient to a hex
     dp => '1',
     sseg => hex1                 -- for display
   );
-  
-  
-  
-  end struc_arch;
+end struc_arch;
   
   
   
